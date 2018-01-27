@@ -2,30 +2,80 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@Scripts.Render("~/bundles/canvas")
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+<h2>Sender Canvas</h2>
+
+
+<div id="canvasContainer">
+    <canvas id="myCanvas" height="450" width="650"></canvas>
 </div>
+@*<p id="demo">Click me to load.</p>*@
+<button id="demo2">JSON sender.</button>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/canvas") @*For unobtrusive-ajax*@
+    @Scripts.Render("~/bundles/fabric") @*For validate and validate-unobtrusive*@
+
+
+<script type="text/javascript">
+
+    var canvas = new fabric.Canvas('myCanvas');
+
+    // create a rectangle with angle=45
+    var rect = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'green',
+        width: 20,
+        height: 20,
+        angle: 45
+    });
+    canvas.add(rect);
+
+
+    canvas.renderAll();
+         
+</script>
+
+@*<script>
+document.getElementById("demo").onclick = function() {myFunction2()};
+
+function myFunction2() {
+    canvas.loadFromJSON(jsonstate, canvas.renderAll.bind(canvas));
+}
+</script>*@
+
+
+
+
+<script>
+document.getElementById("demo2").onclick = function() {myFunction()};
+
+function myFunction() {
+    var jsonstate = canvas.toJSON();
+
+    canvas.clear();
+    document.getElementById("demo2").innerHTML ="Transfer complete";
+    console.log(11);
+    var rect2 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'red',
+        width: 20,
+        height: 20,
+        angle: 45
+    });
+    var canvas2 = new fabric.Canvas('myCanvas2');
+
+    canvas2.loadFromJSON(jsonstate, canvas2.renderAll.bind(canvas2));
+    canvas.add(rect2);
+
+}
+</script>
+
+
+    }

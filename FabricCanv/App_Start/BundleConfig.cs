@@ -11,6 +11,14 @@ namespace FabricCanv
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fabric").Include(
+                       "~/Scripts/fabric.min.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/canvas").Include(
+                       "~/Scripts/canvasjs.min.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
