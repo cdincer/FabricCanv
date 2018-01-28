@@ -9,7 +9,7 @@
 <p>Items gotten from sender canvas appear here.</p>
 
 <div id="canvasContainer">
-    <canvas id="myCanvas3" height="450" width="650"></canvas>  
+    <canvas id="myCanvas3" height="640" width="480"></canvas>  
 </div>
 
 @Html.ActionLink("Go Back To Sender Canvas", "Index", new { area = "", controller = "Home", }, new { @class = "btn btn-info" })
@@ -28,9 +28,16 @@
 
     var jsongotten =localStorage.getItem('JSONStorage');
     var canvas3 = new fabric.Canvas('myCanvas3');
+    canvas3.loadFromJSON(jsongotten, canvas3.renderAll.bind(canvas3));
+    
+    var jsonvalueparsed = JSON.parse(jsongotten); //Place to get values for Video
+    console.log('values in object are ' + jsonvalueparsed[1].angle);
+
+
 
     var video1El = document.getElementById('video1');
 
+    
     var video1 = new fabric.Image(video1El, {
         left: 350,
         top: 300,
@@ -42,7 +49,6 @@
     canvas3.add(video1);
     video1.getElement().play();
 
-    canvas3.loadFromJSON(jsongotten, canvas3.renderAll.bind(canvas3));
 
 
     fabric.util.requestAnimFrame(function render() {
