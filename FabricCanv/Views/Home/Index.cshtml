@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Sender Canvas";
 }
 
 @Scripts.Render("~/bundles/canvas")
@@ -9,21 +9,34 @@
 <p>Use the button to transfer a shape. Click on the transfer button to clean it up.</p>
 
 <div id="canvasContainer">
-    <canvas id="myCanvas" height="450" width="650"></canvas>
+    <canvas id="myCanvas" height="640" width="480"></canvas>
 </div>
-<button id="demo2">JSON sender.</button>
+<button id="demo2" class="btn btn-info">Transfer Canvas !.</button>
+<input type="button" class="btn btn-info" value="Go To Transfer Canvas" onclick="location.href='@Url.Action("Receiver", "Receiving")'" />
 
+@* Pure action link ref @Html.ActionLink("Transfer Canvas", "Receiver", new { area = "", controller = "Receiving" })*@
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/canvas") @*For unobtrusive-ajax*@
     @Scripts.Render("~/bundles/fabric") @*For validate and validate-unobtrusive*@
 
-
+    <video height="360" width="480" id="video1" style="display: none" class="canvas-img">
+  <source src="http://html5demos.com/assets/dizzy.mp4">
+  <source src="http://html5demos.com/assets/dizzy.ogv">
+</video>
 <script type="text/javascript">
 
     var canvas = new fabric.Canvas('myCanvas');
+    var video1El = document.getElementById('video1');
 
+    var video1 = new fabric.Image(video1El, {
+        left: 200,
+        top: 300,
+        angle: -15,
+        originX: 'center',
+        originY: 'center'
+    });
     // create a rectangle with angle=45
     var rect = new fabric.Rect({
         left: 100,
@@ -33,10 +46,17 @@
         height: 20,
         angle: 45
     });
+    canvas.add(video1);
+    video1.getElement().play();
+
     canvas.add(rect);
 
 
-    canvas.renderAll();
+
+    fabric.util.requestAnimFrame(function render() {
+        canvas.renderAll();
+        fabric.util.requestAnimFrame(render);
+    });
          
 </script>
 
