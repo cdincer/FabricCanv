@@ -22,18 +22,12 @@
 
     <script type="text/javascript">
 
-    var canvas = new fabric.Canvas('myCanvas3');
+        window.onload = alert('script started');
 
-    // create a rectangle with angle=45 Adds a circle for test.
-    //var rect = new fabric.Rect({
-    //    left: 100,
-    //    top: 100,
-    //    fill: 'red',
-    //    width: 20,
-    //    height: 20,
-    //    angle: 45
-    //});
-    //canvas.add(rect);
+        var jsongotten =localStorage.getItem('JSONStorage');
+
+    var canvas3 = new fabric.Canvas('myCanvas3');
+    canvas3.loadFromJSON(jsongotten, canvas3.renderAll.bind(canvas3));
 
 
     canvas.renderAll();

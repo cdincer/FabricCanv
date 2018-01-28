@@ -47,7 +47,7 @@ document.getElementById("demo2").onclick = function() {myFunction()};
 
 function myFunction() {
     var jsonstate = canvas.toJSON();
-
+    localStorage.setItem('JSONStorage', JSON.stringify(jsonstate));
     canvas.clear();
     document.getElementById("demo2").innerHTML ="Transfer complete";
     var rect2 = new fabric.Rect({
