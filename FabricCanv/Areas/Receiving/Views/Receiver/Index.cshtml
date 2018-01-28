@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Scripts.Render("~/bundles/canvas")
+
+
+<h2>Sender Canvas</h2>
+<p>Use the button to transfer a shape. Click on the transfer button to clean it up.</p>
+
+<div id="canvasContainer">
+    <canvas id="myCanvas3" height="450" width="650"></canvas>
+</div>
+<button id="demo2">JSON sender.</button>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/canvas") @*For unobtrusive-ajax*@
+    @Scripts.Render("~/bundles/fabric") @*For validate and validate-unobtrusive*@
+
+
+    <script type="text/javascript">
+
+    var canvas = new fabric.Canvas('myCanvas3');
+
+    // create a rectangle with angle=45 Adds a circle for test.
+    //var rect = new fabric.Rect({
+    //    left: 100,
+    //    top: 100,
+    //    fill: 'red',
+    //    width: 20,
+    //    height: 20,
+    //    angle: 45
+    //});
+    //canvas.add(rect);
+
+
+    canvas.renderAll();
+
+    </script>
+
+
+
+    <script> 
+//        Normally transfers the shape.
+//document.getElementById("demo2").onclick = function() {myFunction()};
+
+//function myFunction() {
+//    var jsonstate = canvas.toJSON();
+
+//    canvas.clear();
+//    document.getElementById("demo2").innerHTML ="Transfer complete";
+//    var rect2 = new fabric.Rect({
+//        left: 100,
+//        top: 100,
+//        fill: 'red',
+//        width: 20,
+//        height: 20,
+//        angle: 45
+//    });
+//    var canvas2 = new fabric.Canvas('myCanvas2');
+
+//    canvas2.loadFromJSON(jsonstate, canvas2.renderAll.bind(canvas2));
+//    canvas.add(rect2);
+
+//}
+    </script>
+
+
+}
