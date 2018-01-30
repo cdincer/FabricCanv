@@ -10,8 +10,10 @@
 
 <div id="canvasContainer">
     <canvas id="myCanvas" height="640" width="480"></canvas>
+
 </div>
-<button id="demo2" class="btn btn-info">Transfer Canvas !.</button>
+@*<canvas id="dog"></canvas>*@
+<button id="demo2" class="btn btn-info">Transfer Canvas !</button>
 <input type="button" class="btn btn-info" value="Go To Transfer Canvas" onclick="location.href='@Url.Action("Receiver", "Receiving")'" />
 
 @* Pure action link ref @Html.ActionLink("Transfer Canvas", "Receiver", new { area = "", controller = "Receiving" })*@
@@ -20,6 +22,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/canvas") @*For unobtrusive-ajax*@
     @Scripts.Render("~/bundles/fabric") @*For validate and validate-unobtrusive*@
+<img src="~/Content/6D18cld.jpg" id="dogimage" style="display:none">
 
     <video height="360" width="480" id="video1" style="display: none" class="canvas-img">
   <source src="http://html5demos.com/assets/dizzy.mp4">
@@ -29,6 +32,15 @@
 
     var canvas = new fabric.Canvas('myCanvas');
     var video1El = document.getElementById('video1');
+    var imgElement = document.getElementById('dogimage');
+
+    //Adds a dog image.
+    var imgInstance = new fabric.Image(imgElement, {
+        left: 100,
+        top: 100,
+        angle: 30,
+        opacity: 0.85
+    });
 
     var video1 = new fabric.Image(video1El, {
         left: 200,
@@ -48,6 +60,7 @@
     });
     canvas.add(video1);
     video1.getElement().play();
+    canvas.add(imgInstance);
 
     canvas.add(rect);
 
